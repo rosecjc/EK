@@ -237,19 +237,14 @@
             position: relative; /* 為 spinner 設定定位基準 */
         }
 /* === 卡片中的圖片樣式 === */
-        .donut-card img.loaded-image { /* Style for loaded image */
-              width: 180px;
-              height: 180px;
-              object-fit: cover;
-              border-radius: 50%;
-        }
-/* === 原味甜甜圈專屬圖片尺寸調整 === */
-
+          .donut-card img.loaded-image,
           .original-donut-size {
-              width: 180px;
-              height: 180px;
-              object-fit: cover;
-              border-radius: 50%;
+             width: 180px;
+             height: 180px;
+             object-fit: contain; /* 修改這裡 */
+             border-radius: 50%;
+             background-color: white; /* 補上背景色避免圖片邊角空白不好看 */
+             padding: 5px; /* 避免圖片貼邊，視覺更柔和 */
         }
 /* === 卡片中甜甜圈名稱樣式 === */
         .donut-card h4 {
