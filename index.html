@@ -8,317 +8,353 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
 /* === 基本頁面設定 === */
-        body {
-            font-family: 'Inter', sans-serif; /* 使用 Inter 字體 */
-            background-color: #f7f7f7; /* 淡灰背景 */
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* 從上方開始排列內容 */
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-            overflow-y: auto; /* 可垂直捲動 */
-        }
-/* === 主要內容容器 === */
-        .container {
-            background-color: #fff; /* 白色背景 */
-            padding: 3.8rem;
-            border-radius: 1.5rem; /* 圓角 */
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);/* 陰影效果 */
-            max-width: 700px;  /* 最大寬度 */
-            width: 100%;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px; /* 上方留白，讓畫面更美觀 */
-            margin-bottom: 20px; /* 下方留白 */
-        }
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
 
-      
+/* === 主要內容容器 === */
+.container {
+    background-color: #fff;
+    padding: 3.8rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 /* === 頁面最上方的 Krispy Kreme Logo 圖片 === */
-        .krispy-kreme-logo {
-            width: 220px; /* 根據需要調整尺寸 */
-            margin-bottom: 2.5rem; /* Logo 下方留空 */
-            max-width: 100%;  /* 保持響應式尺寸 */
-            height: auto;
-        }
-      
+.krispy-kreme-logo {
+    width: 220px;
+    margin-bottom: 2.5rem;
+    max-width: 100%;
+    height: auto;
+}
+
 /* === 主標題 h1 === */
-        h1 {
-            font-size: 4.8rem; /* 主標文字體變大 */
-            color: #d81b60; /* 深粉色，呼應品牌紅色系 */
-            margin-bottom: 1.5rem;
-            font-weight: 800; /* 加粗 */
-            letter-spacing: -0.5px; /* 字距略緊縮 */
-        }
+h1 {
+    font-size: 4rem;
+    color: #d81b60;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
 /* === 區段標題 h2 === */
-      
-      h2 {
-            font-size: 35px;
-            color: #00A850; /* Krispy Kreme 綠色 */
-            margin-top: 2rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            padding-top: 1rem; /* 增加上內距，滑動時視覺更舒服 */
-        }
+h2 {
+    font-size: 2.5rem;
+    color: #00A850;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    padding-top: 1rem;
+}
+
 /* === 次標題 h3，例如題目標題用 === */
-        h3 {
-             font-size: 25px;
-            color: #c2185b;
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
+h3 {
+    font-size: 1.8rem;
+    color: #c2185b;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
 
 /* === 各個區段的內容樣式 === */
-        .section-content {
-            text-align: left;
-            margin-bottom: 30px;
-            line-height: 1.7;/* 行距加寬，閱讀更舒適 */
-            font-size: 1.15rem;
-            color: #4a4a4a;
-            width: 100%; /* 內容區寬度設為 100% */
-        }
-        .section-content ul {
-            list-style-type: disc;/* 使用圓點清單樣式 */
-            margin-left: 1.5rem;/* 每個清單項目下方留空 */
-            padding-left: 0;
-        }
-        .section-content li {
-            margin-bottom: 0.5rem;
-        }
- /* === 前言/導語文字樣式 === */
-        .intro-text {
-            font-size: 18px; /* 導語字體略大 */
-            color: #4a4a4a; /* 深灰字體，對比明顯 */
-            margin-bottom: 2.5rem;  /* 下方空間寬鬆 */
-            line-height: 1.7; /* 行距增加，易讀性提升 */
-            font-weight: 500;
-        }
- /* === 每一題的問題區塊樣式 === */
-        .question-block {
-            background-color: #f0fdf4; /* 非常淡的綠色，呼應品牌 */
-            padding: 1.8rem; /* 區塊內距增加 */
-            margin-bottom: 1.5rem; /* 區塊之間間距 */
-            border-radius: 1.25rem; /* 圓角較大 */
-            text-align: left;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); /* 柔和陰影 */
-            border: 1px solid #dcfce7; /* 淡綠色邊框 */
-        }
-/* === 每一題標題 h3（問題主題） === */
-        .question-block h3 {
-            font-size: 25px; /* 題目字體較大 */
-            color: #166534; /* 深綠色，突出問題 */
-            margin-bottom: 1.2rem;
-            font-weight: 700;
-        }
-/* === 單選選項的文字樣式 === */
-        .options label {
-            display: block;
-            margin-bottom: 0.9rem; /* 增加每個選項之間距離 */
-            cursor: pointer;/* 滑鼠指標變為手型 */
-            font-size: 1.15rem; /* 選項字體略大 */
-            color: #333;
-            transition: color 0.2s ease, transform 0.2s ease;/* 顏色與位置漸變效果 */
-            padding: 0.5rem 0;
-        }
- /* === 滑鼠移到選項時的 hover 效果 === */
-        .options label:hover {
-            color: #00A850; /* 滑鼠移上變為品牌綠 */
-            transform: translateX(5px); /* 向右位移 5px 製造互動感 */
-        }
-  
-/* === 單選按鈕（圓點 radio）的樣式 === */
-        input[type="radio"] {
-            margin-right: 0.8rem;
-            transform: scale(1.3); /* 放大圓點按鈕 */
-            accent-color: #00A850; /* 使用品牌綠作為按鈕顏色 */
-        }
- /* === 提交按鈕樣式 === */
-        button {
-            background-color: #d81b60;  /* 主按鈕使用品牌紅 */
-            color: white;
-            padding: 1.1rem 2.5rem;  /* 上下與左右內距 */
-            border: none;
-            border-radius: 0.9rem; /* 圓角按鈕 */
-            font-size: 1.35rem; /* 按鈕字體大一點 */
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 6px 15px rgba(216, 27, 96, 0.4); /* 按鈕陰影 */
-            margin-top: 2rem; /* 與上方區塊留白 */
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px; /* 圖示與文字間距 */
-        }
+.section-content {
+    text-align: left;
+    margin-bottom: 30px;
+    line-height: 1.7;
+    font-size: 1.15rem;
+    color: #4a4a4a;
+    width: 100%;
+}
+.section-content ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    padding-left: 0;
+}
+.section-content li {
+    margin-bottom: 0.5rem;
+}
 
-  /* === 按鈕 hover 效果 === */
-        button:hover {
-            background-color: #a3114a; /* 滑鼠移入時變為較深的紅色 */
-            transform: translateY(-3px); /* 整個按鈕稍微上浮 */
-            box-shadow: 0 8px 20px rgba(216, 27, 96, 0.5);/* 更明顯的陰影效果 */
-        }
+/* === 前言/導語文字樣式 === */
+.intro-text {
+    font-size: 1.3rem;
+    color: #4a4a4a;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+    font-weight: 500;
+}
+
+/* === 每一題的問題區塊樣式 === */
+.question-block {
+    background-color: #f0fdf4;
+    padding: 1.8rem;
+    margin-bottom: 1.5rem;
+    border-radius: 1.25rem;
+    text-align: left;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #dcfce7;
+}
+
+/* === 每一題標題 h3（問題主題） === */
+.question-block h3 {
+    font-size: 1.8rem;
+    color: #166534;
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+}
+
+/* === 單選選項的文字樣式 === */
+.options label {
+    display: block;
+    margin-bottom: 0.9rem;
+    cursor: pointer;
+    font-size: 1.15rem;
+    color: #333;
+    transition: color 0.2s ease, transform 0.2s ease;
+    padding: 0.5rem 0;
+}
+
+/* === 滑鼠移到選項時的 hover 效果 === */
+.options label:hover {
+    color: #00A850;
+    transform: translateX(5px);
+}
+
+/* === 單選按鈕（圓點 radio）的樣式 === */
+input[type="radio"] {
+    margin-right: 0.8rem;
+    transform: scale(1.3);
+    accent-color: #00A850;
+}
+
+/* === 提交按鈕樣式 === */
+button {
+    background-color: #d81b60;
+    color: white;
+    padding: 1.1rem 2.5rem;
+    border: none;
+    border-radius: 0.9rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 6px 15px rgba(216, 27, 96, 0.4);
+    margin-top: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* === 按鈕 hover 效果 === */
+button:hover {
+    background-color: #a3114a;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(216, 27, 96, 0.5);
+}
 
 /* === 按鈕點擊後的效果 === */
-        button:active {
-            transform: translateY(0);/* 按下時回到原位 */
-            box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);/* 陰影變淡，模擬按壓感 */
-        }
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);
+}
 
-/* === 顯示結果區塊 === */    
-        #result {
-            margin-top: 2.5rem;
-            font-size: 1.6rem; /* 結果文字較大 */
-            color: #d81b60;/* 品牌紅色 */
-            font-weight: 600;
-            background-color: #fff9f9;/* 非常淡的粉紅／白色背景 */
-            padding: 2rem;
-            border-radius: 1.25rem;/* 圓角 */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 柔和陰影 */
-            animation: fadeIn 1s ease-out;/* 淡入動畫 */
-            display: none;  /* 預設隱藏，提交後才顯示 */
-            border: 1px solid #fee2e2; /* 淡淡的紅色邊框 */
-            width: 100%;
-        }
+/* === 顯示結果區塊 === */
+#result {
+    margin-top: 2.5rem;
+    font-size: 1.6rem;
+    color: #d81b60;
+    font-weight: 600;
+    background-color: #fff9f9;
+    padding: 2rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out;
+    display: none;
+    border: 1px solid #fee2e2;
+    width: 100%;
+}
+
 /* === 淡入動畫效果 === */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* === 載入動畫 - 轉圈效果 === */
-        .spinner {
-            border: 5px solid rgba(216, 27, 96, 0.2);/* 外圈半透明粉紅 */
-            border-top-color: #d81b60; /* 上方為品牌紅色 */
-            border-radius: 50%;/* 圓形 */
-            width: 3.5rem;
-            height: 3.5rem;
-            animation: spin 0.8s linear infinite;/* 無限旋轉動畫 */
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
- /* === 甜甜圈圖片（獨立展示用，非卡片）樣式 === */
-        .donut-image {
-            width: 250px; /* 略大的圖片尺寸 */
-            height: 250px;
-            border-radius: 50%;  /* 圓形圖片 */
-            object-fit: cover;/* 等比縮放並填滿容器 */
-            margin: 2rem auto; /* 上下留白、置中 */
-            border: 5px solid #00A850;  /* 品牌綠色邊框 */
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* 突出的陰影效果 */
-        }
+.spinner {
+    border: 5px solid rgba(216, 27, 96, 0.2);
+    border-top-color: #d81b60;
+    border-radius: 50%;
+    width: 3.5rem;
+    height: 3.5rem;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* === 甜甜圈圖片（獨立展示用，非卡片）樣式 === */
+.donut-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 2rem auto;
+    border: 5px solid #00A850;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
 
 /* === 單一甜甜圈卡片樣式 === */
-        .donut-card {
-            background-color: #fef08a; /* 淺黃色背景，營造甜甜感 */
-            border-radius: 1rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);/* 柔和陰影 */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
+.donut-card {
+    background-color: #fef08a;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
 /* === 卡片中圖片容器樣式 === */
-        .donut-card .donut-card-image-wrapper {
-           width: 200px;
-           height: 200px;
-           margin-bottom: 1rem;
-           border: 3px solid #fef08a;
-           overflow: hidden;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           position: relative;
-           box-sizing: border-box;
-           border-radius: 100%;
-        }
+.donut-card .donut-card-image-wrapper {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 1rem;
+    border: 3px solid #fef08a;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 100%;
+}
+
 /* === 卡片中的圖片樣式 === */
-     .donut-card img.loaded-image,
-     .original-donut-size {
-          width: 180px;
-          height: 180px;
-          object-fit: contain;
-          border-radius: 100%;
-        }
+.donut-card img.loaded-image,
+.original-donut-size {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 100%;
+}
+
 /* === 卡片中甜甜圈名稱樣式 === */
-        .donut-card h4 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #b45309; /* 深橘褐色字體 */
-            margin-bottom: 0.5rem;
-        }
+.donut-card h4 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #b45309;
+    margin-bottom: 0.5rem;
+}
+
 /* === 卡片中甜甜圈描述文字樣式 === */
-        .donut-card p {
-            font-size: 1.05rem;
-            color: #5b5b5b;/* 深灰文字 */
-        }
+.donut-card p {
+    font-size: 1.05rem;
+    color: #5b5b5b;
+}
+
 /* === 小型載入中的轉圈圈動畫樣式 === */
-        .small-spinner {
-            border: 3px solid rgba(216, 27, 96, 0.2);/* 外圈淡粉色 */
-            border-top-color: #d81b60;/* 上方轉圈為品牌紅 */
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 0.8s linear infinite;/* 無限旋轉動畫 */
-            position: absolute; /* Position spinner over placeholder */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* 置中 spinner */
-        }
+.small-spinner {
+    border: 3px solid rgba(216, 27, 96, 0.2);
+    border-top-color: #d81b60;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 0.8s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 /* === 響應式調整：適用於螢幕寬度小於 640px 的裝置（例如手機）=== */
-        @media (max-width: 640px) {
-            .container {
-                padding: 1.5rem;/* 減少容器內距 */
-                margin: 10px; /* 外距縮小以適應小螢幕 */
-                border-radius: 1rem;/* 圓角也略微縮小 */
-            }
-            .krispy-kreme-logo {
-                width: 150px;/* Logo 圖片大小 */
-                margin-bottom: 1.5rem; /* 下方距離也縮小 */
-            }
-          
-            .intro-text {font-size: 1.1rem;}/* 前言文字略縮小 */
-            .section-content {font-size: 1rem;} /* 區塊內容文字縮小 */
-            .question-block {
-                padding: 1.2rem;/* 問題區塊 padding 減少 */
-                margin-bottom: 1rem;/* 間距縮小 */
-                border-radius: 0.8rem; /* 圓角略縮小 */
-            }
-            .question-block h3 {font-size: 1.15rem;}/* 問題標題縮小 */
-            .options label {
-              font-size: 0.95rem;/* 單選選項文字縮小 */
-              margin-bottom: 0.6rem;}/* 間距略縮小 */
-            input[type="radio"] {transform: scale(1.1);}/* 單選按鈕略微縮小 */
-            button {
-                padding: 0.9rem 1.8rem;/* 按鈕 padding 減少 */
-                font-size: 1.15rem;/* 按鈕文字縮小 */
-                border-radius: 0.7rem;/* 圓角略縮小 */
-                margin-top: 1.5rem;/* 上方距離略減少 */
-            }
-            #result {
-                font-size: 1.1rem;  /* 結果文字縮小 */
-                padding: 1.2rem;/* 內距縮小 */
-                border-radius: 0.9rem;/* 圓角略縮小 */
-            }
-            .donut-image {
-                width: 180px; /* 單獨展示甜甜圈圖片縮小 */
-                height: 180px;
-                margin: 1.5rem auto;/* 上下留白縮小 */
-            }
-            .donut-card img, .donut-card .donut-card-image-wrapper {
-                width: 100px; /* 卡片內圖片縮小 */
-                height: 100px;
-            }
-            .donut-card h4 {font-size: 1.2rem;} /* 甜甜圈名稱縮小 */
-            .donut-card p {font-size: 0.9rem;}/* 說明文字縮小 */
-        }
+@media (max-width: 640px) {
+    .container {
+        padding: 1.5rem;
+        margin: 10px;
+        border-radius: 1rem;
+    }
+    .krispy-kreme-logo {
+        width: 150px;
+        margin-bottom: 1.5rem;
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
+    h3,
+    .question-block h3 {
+        font-size: 1.3rem;
+    }
+    .intro-text {
+        font-size: 1.1rem;
+    }
+    .section-content {
+        font-size: 1rem;
+    }
+    .question-block {
+        padding: 1.2rem;
+        margin-bottom: 1rem;
+        border-radius: 0.8rem;
+    }
+    .options label {
+        font-size: 0.95rem;
+        margin-bottom: 0.6rem;
+    }
+    input[type="radio"] {
+        transform: scale(1.1);
+    }
+    button {
+        padding: 0.9rem 1.8rem;
+        font-size: 1.15rem;
+        border-radius: 0.7rem;
+        margin-top: 1.5rem;
+    }
+    #result {
+        font-size: 1.1rem;
+        padding: 1.2rem;
+        border-radius: 0.9rem;
+    }
+    .donut-image {
+        width: 180px;
+        height: 180px;
+        margin: 1.5rem auto;
+    }
+    .donut-card img,
+    .donut-card .donut-card-image-wrapper {
+        width: 100px;
+        height: 100px;
+    }
+    .donut-card h4 {
+        font-size: 1.2rem;
+    }
+    .donut-card p {
+        font-size: 0.9rem;
+    }
+}
     </style>
 </head>
 <body>
