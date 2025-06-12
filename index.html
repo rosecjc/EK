@@ -270,7 +270,14 @@
             left: 50%;
             transform: translate(-50%, -50%); /* 置中 spinner */
         }
+/* === 原味甜甜圈專屬圖片尺寸調整 === */
 
+          .original-donut-size {
+              width: 180px;
+              height: 180px;
+              object-fit: cover;
+              border-radius: 50%;
+        }
 /* === 響應式調整：適用於螢幕寬度小於 640px 的裝置（例如手機）=== */
         @media (max-width: 640px) {
             .container {
@@ -342,7 +349,7 @@
             <div class="donut-card">
                 <div class="donut-card-image-wrapper">
                     <!-- Original Glazed Donut Image - Using provided official URL -->
-                    <img src="images/原味糖霜甜甜圈.jpg" alt="原味糖霜甜甜圈" class="loaded-image">
+                    <img id="originalGlazedImgElem" src="images/原味糖霜甜甜圈.jpg" alt="原味糖霜甜甜圈" class="loaded-image original-donut-size">
                 </div>
                 <h4>原味糖霜甜甜圈</h4>
                 <p>
