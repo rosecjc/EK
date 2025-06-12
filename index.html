@@ -225,26 +225,27 @@
             text-align: center;
         }
 /* === 卡片中圖片容器樣式 === */
-        .donut-card .donut-card-image-wrapper /* 圖片容器寬度 */
-            width: 150px;/* 寬度 */
-            height: 150px;/* 高度 */
-            margin-bottom: 1rem;
-            border: 3px solid #facc15; /* 深黃色邊框 */
-            overflow: hidden; /* 隱藏溢出圖片 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative; /* 為 spinner 設定定位基準 */
+        .donut-card .donut-card-image-wrapper {
+           width: 180px;
+           height: 180px;
+           margin-bottom: 1rem;
+           border: 3px solid #facc15;
+           overflow: hidden;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           position: relative;
+           box-sizing: border-box;
+           background-color: #fff; /* 保留圖片周圍純白背景 */
+           border-radius: 50%;
         }
 /* === 卡片中的圖片樣式 === */
-          .donut-card img.loaded-image,
-          .original-donut-size {
-             width: 180px;
-             height: 180px;
-             object-fit: cover; /* 修改這裡 */
-             border-radius: 50%;
-             background-color: white; /* 補上背景色避免圖片邊角空白不好看 */
-             padding: 5px; /* 避免圖片貼邊，視覺更柔和 */
+     .donut-card img.loaded-image,
+     .original-donut-size {
+          width: 160px;
+          height: 160px;
+          object-fit: contain;
+          border-radius: 50%;
         }
 /* === 卡片中甜甜圈名稱樣式 === */
         .donut-card h4 {
