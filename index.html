@@ -1,758 +1,203 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>甜甜圈口味探索站 - Krispy Kreme</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f7f7; /* Very light grey for a clean look */
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Align to start for scrolling content */
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-            overflow-y: auto;
-        }
-        .container {
-            background-color: #fff;
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
-            max-width: 700px; /* Slightly wider container */
-            width: 100%;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px; /* Add some top margin for better appearance */
-            margin-bottom: 20px; /* Add some bottom margin */
-        }
-        .krispy-kreme-logo {
-            width: 220px; /* Adjust size as needed */
-            margin-bottom: 2.5rem; /* More space below the logo */
-            max-width: 100%; /* Ensure it's responsive */
-            height: auto;
-        }
-        h1 {
-            font-size: 2.8rem; /* Larger heading */
-            color: #d81b60; /* Deep pink, maintaining Krispy Kreme red tone */
-            margin-bottom: 1.5rem;
-            font-weight: 800; /* Bolder */
-            letter-spacing: -0.5px; /* Slightly tighter letter spacing */
-        }
-        h2 {
-            font-size: 2.2rem;
-            color: #00A850; /* Krispy Kreme green */
-            margin-top: 2rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            padding-top: 1rem; /* Add padding to make scrolling to section smoother */
-        }
-        h3 {
-             font-size: 1.8rem;
-            color: #c2185b;
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-        .section-content {
-            text-align: left;
-            margin-bottom: 2.5rem;
-            line-height: 1.7;
-            font-size: 1.15rem;
-            color: #4a4a4a;
-            width: 100%; /* Ensure content takes full width */
-        }
-        .section-content ul {
-            list-style-type: disc;
-            margin-left: 1.5rem;
-            padding-left: 0;
-        }
-        .section-content li {
-            margin-bottom: 0.5rem;
-        }
-        .intro-text {
-            font-size: 1.3rem; /* Slightly larger intro text */
-            color: #4a4a4a; /* Darker grey for better contrast */
-            margin-bottom: 2.5rem; /* More space */
-            line-height: 1.7; /* Better readability */
-            font-weight: 500;
-        }
-        .question-block {
-            background-color: #f0fdf4; /* Very light green, hinting at brand color */
-            padding: 1.8rem; /* More padding */
-            margin-bottom: 1.5rem; /* More space */
-            border-radius: 1.25rem; /* More rounded */
-            text-align: left;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
-            border: 1px solid #dcfce7; /* Subtle light green border */
-        }
-        .question-block h3 {
-            font-size: 1.45rem; /* Larger question text */
-            color: #166534; /* Darker green for questions */
-            margin-bottom: 1.2rem;
-            font-weight: 700;
-        }
-        .options label {
-            display: block;
-            margin-bottom: 0.9rem; /* Increased space */
-            cursor: pointer;
-            font-size: 1.15rem; /* Slightly larger option text */
-            color: #333;
-            transition: color 0.2s ease, transform 0.2s ease;
-            padding: 0.5rem 0;
-        }
-        .options label:hover {
-            color: #00A850; /* Krispy Kreme green on hover */
-            transform: translateX(5px); /* Slight shift on hover */
-        }
-        input[type="radio"] {
-            margin-right: 0.8rem;
-            transform: scale(1.3); /* Larger radio buttons */
-            accent-color: #00A850; /* Krispy Kreme green accent */
-        }
-        button {
-            background-color: #d81b60; /* Krispy Kreme red for primary button */
-            color: white;
-            padding: 1.1rem 2.5rem; /* Larger padding */
-            border: none;
-            border-radius: 0.9rem; /* More rounded button */
-            font-size: 1.35rem; /* Larger button text */
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 6px 15px rgba(216, 27, 96, 0.4); /* Stronger red shadow */
-            margin-top: 2rem; /* More margin */
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        button:hover {
-            background-color: #a3114a; /* Darker red on hover */
-            transform: translateY(-3px); /* More pronounced lift */
-            box-shadow: 0 8px 20px rgba(216, 27, 96, 0.5);
-        }
-        button:active {
-            transform: translateY(0);
-            box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);
-        }
-        #result {
-            margin-top: 2.5rem;
-            font-size: 1.6rem; /* Larger result text */
-            color: #d81b60;
-            font-weight: 600;
-            background-color: #fff9f9; /* Very light pink/white */
-            padding: 2rem;
-            border-radius: 1.25rem;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-out;
-            display: none;
-            border: 1px solid #fee2e2; /* Subtle light red border */
-            width: 100%;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .spinner {
-            border: 5px solid rgba(216, 27, 96, 0.2);
-            border-top-color: #d81b60;
-            border-radius: 50%;
-            width: 3.5rem;
-            height: 3.5rem;
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .donut-image {
-            width: 250px; /* Slightly larger image */
-            height: 250px;
-            border-radius: 50%; /* Make image round */
-            object-fit: cover;
-            margin: 2rem auto; /* More margin */
-            border: 5px solid #00A850; /* Krispy Kreme green border */
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* More prominent shadow for image */
-        }
-
-        /* Styling for the specific donut sections */
-        .donut-card {
-            background-color: #fef08a; /* Light yellow for a sweet feel */
-            border-radius: 1rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .donut-card .donut-card-image-wrapper { /* New wrapper for image/spinner */
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-bottom: 1rem;
-            border: 3px solid #facc15; /* Yellow border */
-            overflow: hidden; /* Hide overflow from image */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative; /* For absolute positioning of spinner */
-            background-color: #ffe066; /* Placeholder background */
-        }
-        .donut-card img.loaded-image { /* Style for loaded image */
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        .donut-card h4 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #b45309; /* Dark orange/brown */
-            margin-bottom: 0.5rem;
-        }
-        .donut-card p {
-            font-size: 1.05rem;
-            color: #5b5b5b;
-        }
-        .small-spinner {
-            border: 3px solid rgba(216, 27, 96, 0.2);
-            border-top-color: #d81b60;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 0.8s linear infinite;
-            position: absolute; /* Position spinner over placeholder */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 640px) {
-            .container {
-                padding: 1.5rem;
-                margin: 10px;
-                border-radius: 1rem;
-            }
-            .krispy-kreme-logo {
-                width: 150px;
-                margin-bottom: 1.5rem;
-            }
-            h1 {
-                font-size: 2.2rem;
-            }
-            h2 {
-                font-size: 1.8rem;
-            }
-            h3 {
-                font-size: 1.5rem;
-            }
-            .intro-text {
-                font-size: 1.1rem;
-            }
-            .section-content {
-                font-size: 1rem;
-            }
-            .question-block {
-                padding: 1.2rem;
-                margin-bottom: 1rem;
-                border-radius: 0.8rem;
-            }
-            .question-block h3 {
-                font-size: 1.15rem;
-            }
-            .options label {
-                font-size: 0.95rem;
-                margin-bottom: 0.6rem;
-            }
-            input[type="radio"] {
-                transform: scale(1.1);
-            }
-            button {
-                padding: 0.9rem 1.8rem;
-                font-size: 1.15rem;
-                border-radius: 0.7rem;
-                margin-top: 1.5rem;
-            }
-            #result {
-                font-size: 1.1rem;
-                padding: 1.2rem;
-                border-radius: 0.9rem;
-            }
-            .donut-image {
-                width: 180px;
-                height: 180px;
-                margin: 1.5rem auto;
-            }
-            .donut-card img, .donut-card .donut-card-image-wrapper {
-                width: 100px;
-                height: 100px;
-            }
-            .donut-card h4 {
-                font-size: 1.2rem;
-            }
-            .donut-card p {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- 開頭：同理心與引導 -->
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/Krispy_Kreme_Logo.svg/1200px-Krispy_Kreme_Logo.svg.png" alt="Krispy Kreme Logo" class="krispy-kreme-logo">
-        <h1>今天想吃什麼甜甜圈？</h1>
-        <p class="intro-text">
-            你是否也曾站在甜甜圈櫃前，陷入甜蜜的選擇障礙？
-            別擔心，這是一個真實存在的煩惱！
-            這個頁面將帶你探索 Krispy Kreme 的美味世界，
-            透過測驗、特色推薦和最新優惠，幫助你找到今日份的幸福甜甜圈！
-            準備好讓你的甜點選擇不再煩惱了嗎？
-        </p>
-
-        <!-- 經典推薦區 -->
-        <h2 id="classic-section" class="text-green-700">經典推薦區：不能錯過的招牌！</h2>
-        <div class="section-content text-gray-700">
-            <div class="donut-card">
-                <div class="donut-card-image-wrapper">
-                    <!-- Original Glazed Donut Image - Using provided official URL -->
-                    <img id="originalGlazedImgElem" src="http://www.krispykreme.com.tw/Upload/images/product/original%20glazed-web.jpg" alt="原味糖霜甜甜圈" class="loaded-image">
-                    <div id="originalGlazedSpinner" class="small-spinner hidden"></div>
-                </div>
-                <h4>原味糖霜甜甜圈</h4>
-                <p>
-                    它是 Krispy Kreme 最受歡迎的經典滋味！趁熱品嚐時，薄脆的糖霜會隨著香軟的甜甜圈在口中幸福地化開。這種獨特口感來自於我們炸過的酵母麵團，與一般蛋糕甜甜圈的扎實感截然不同！
-                </p>
-            </div>
-        </div>
-
-        <!-- 當季/限定區 -->
-        <h2 id="seasonal-section" class="text-green-700">當季/限定區：新鮮感與嚐鮮！</h2>
-        <div class="section-content text-gray-700">
-            <p class="mb-4">
-                別錯過我們最新的 **「Hello Fruity Summer! 夏．果香」系列**，只在 **2025.5.12 至 6.25** 期間限定販售喔！
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="donut-card">
-                    <div class="donut-card-image-wrapper">
-                        <!-- Lemon Galaxy Donut Image - Using provided official URL -->
-                        <img id="lemonStarImgElem" src="http://www.krispykreme.com.tw/Upload/images/product/%E6%AA%B8%E6%AA%AC%E7%94%9C%E6%98%9F.png" alt="檸檬甜星" class="loaded-image">
-                        <div id="lemonStarSpinner" class="small-spinner hidden"></div>
-                    </div>
-                    <h4>檸檬甜星</h4>
-                    <p>清香酸甜的檸檬糖霜疊加檸檬巧克力，撒上繽紛星星糖片，口感層次豐富。</p>
-                </div>
-                <div class="donut-card">
-                    <div class="donut-card-image-wrapper">
-                        <!-- Grape Wave Donut Image - Using provided official URL -->
-                        <img id="grapeWaveImgElem" src="http://www.krispykreme.com.tw/Upload/images/product/%E8%91%A1%E8%90%84%E9%A6%99%E6%AA%B3%E6%B5%AA%E8%8A%B1.png" alt="葡萄香檳浪花" class="loaded-image">
-                        <div id="grapeWaveSpinner" class="small-spinner hidden"></div>
-                    </div>
-                    <h4>葡萄香檳浪花</h4>
-                    <p>濃郁葡萄巧克力搭配微酸香檳糖霜，點綴跳跳糖帶來驚喜的口感。</p>
-                </div>
-                <div class="donut-card">
-                    <div class="donut-card-image-wrapper">
-                        <!-- Passion Party Donut Image - Using provided official URL -->
-                        <img id="passionPartyImgElem" src="http://www.krispykreme.com.tw/upload/Product/%E7%99%BE%E9%A6%99%E6%9E%9C%E6%B4%BE%E5%B0%8D.png" alt="百香果派對" class="loaded-image">
-                        <div id="passionPartySpinner" class="small-spinner hidden"></div>
-                    </div>
-                    <h4>百香果派對</h4>
-                    <p>香氣襲人的百香果糖霜基底，搭配迷你棉花糖與脆口彩米，口感活潑。</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 口味探索區 (Quiz) -->
-        <h2 id="quiz-section" class="text-green-700">口味探索區：互動式選擇工具！</h2>
-        <p class="section-content text-gray-700">
-            來做個心理測驗，看看今天哪款 Krispy Kreme 甜甜圈最符合你的心情！
-        </p>
-        <form id="donutQuizForm" class="w-full">
-            <!-- Question 1 -->
-            <div class="question-block rounded-xl p-6 mb-5 shadow-md">
-                <h3 class="text-xl font-semibold mb-4">第一題：今天的心情是什麼顏色？</h3>
-                <div class="options">
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q1" value="A" class="mr-3 transform scale-125 accent-pink-500">
-                        A. 亮麗的 黃色
-                    </label>
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q1" value="B" class="mr-3 transform scale-125 accent-pink-500">
-                        B. 溫暖的 米色
-                    </label>
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q1" value="C" class="mr-3 transform scale-125 accent-pink-500">
-                        C. 神秘的 深藍色
-                    </label>
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q1" value="D" class="mr-3 transform scale-125 accent-pink-500">
-                        D. 清新的 綠色
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 2 -->
-            <div class="question-block rounded-xl p-6 mb-5 shadow-md">
-                <h3 class="text-xl font-semibold mb-4">第二題：你最喜歡哪種天氣？</h3>
-                <div class="options">
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q2" value="A" class="mr-3 transform scale-125 accent-pink-500">
-                        A. 陽光普照
-                    </label>
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q2" value="B" class="mr-3 transform scale-125 accent-pink-500">
-                        B. 微風徐徐
-                    </label>
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q2" value="C" class="mr-3 transform scale-125 accent-pink-500">
-                        C. 雷雨交加
-                    </label>
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q2" value="D" class="mr-3 transform scale-125 accent-pink-500">
-                        D. 細雨綿綿
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 3 -->
-            <div class="question-block rounded-xl p-6 mb-5 shadow-md">
-                <h3 class="text-xl font-semibold mb-4">第三題：出門時，你通常會戴什麼飾品？</h3>
-                <div class="options">
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q3" value="A" class="mr-3 transform scale-125 accent-pink-500">
-                        A. 亮眼的首飾
-                    </label>
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q3" value="B" class="mr-3 transform scale-125 accent-pink-500">
-                        B. 簡單的耳環或項鍊
-                    </label>
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q3" value="C" class="mr-3 transform scale-125 accent-pink-500">
-                        C. 有趣的帽子或圍巾
-                    </label>
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q3" value="D" class="mr-3 transform scale-125 accent-pink-500">
-                        D. 什麼都不戴
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 4 -->
-            <div class="question-block rounded-xl p-6 mb-5 shadow-md">
-                <h3 class="text-xl font-semibold mb-4">第四題：當你感到壓力時，通常怎麼放鬆？</h3>
-                <div class="options">
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q4" value="A" class="mr-3 transform scale-125 accent-pink-500">
-                        A. 大聲唱歌或激烈運動
-                    </label>
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q4" value="B" class="mr-3 transform scale-125 accent-pink-500">
-                        B. 靜靜看書或聽音樂
-                    </label>
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q4" value="C" class="mr-3 transform scale-125 accent-pink-500">
-                        C. 嘗試新的活動或挑戰
-                    </label>
-                    <label class="block mb-3 cursor-pointer text-gray-700 hover:text-pink-600">
-                        <input type="radio" name="q4" value="D" class="mr-3 transform scale-125 accent-pink-500">
-                        D. 散步或接觸大自然
-                    </label>
-                </div>
-            </div>
-
-            <button type="submit" class="bg-pink-600 text-white py-4 px-8 rounded-xl text-xl font-bold hover:bg-pink-700 transition-all duration-300 ease-in-out shadow-lg">
-                提交答案！
-            </button>
-        </form>
-
-        <div id="result" class="mt-8 text-2xl text-pink-700 font-semibold bg-pink-50 p-6 rounded-xl animate-fade-in">
-            <div id="loadingSpinner" class="hidden text-center">
-                <p class="mb-4">正在為您生成專屬甜甜圈圖片，請稍候...</p>
-                <div class="spinner border-t-4 border-b-4 border-pink-500 rounded-full w-12 h-12 animate-spin mx-auto mt-4"></div>
-            </div>
-            <div id="donutImageContainer" class="mt-4">
-                <img id="quizResultImgElem" src="" alt="您的推薦甜甜圈" class="donut-image hidden">
-            </div>
-            <div id="recommendationText" class="mt-4">
-                <!-- Recommendation text will be displayed here -->
-            </div>
-        </div>
-
-        <h3 class="text-green-700 mt-8">更多標準口味：</h3>
-        <div class="section-content grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
-            <p>探索我們豐富的標準口味，總有一款滿足你的味蕾：</p>
-            <ul>
-                <li>靜岡抹茶蛋糕</li>
-                <li>可可餅乾甜甜圈</li>
-                <li>草莓夾心貝</li> <!-- Fixed the extra <li> tag here -->
-                <li>海鹽焦糖甜甜圈</li>
-                <li>巧克力糖霜蛋糕</li>
-                <li>榛果脆脆甜甜圈</li>
-                <li>巧克力夾心甜甜圈</li>
-                <li>繽紛草莓甜甜圈</li>
-                <li>杏仁白巧克力甜甜圈</li>
-                <li>花生糖霜甜甜圈</li>
-                <li>香草糖霜蛋糕</li>
-                <li>以及更多...</li>
-            </ul>
-        </div>
-
-        <!-- 優惠與組合區 -->
-        <h2 id="offers-section" class="text-green-700">優惠與組合區：讓美味更超值！</h2>
-        <div class="section-content text-gray-700">
-            <p class="mb-4 font-bold">
-                立即享受我們的超值優惠，讓你的甜甜圈體驗更豐富！
-            </p>
-            <h3 class="text-red-600">夏．果香禮盒優惠</h3>
-            <p>
-                想與親友分享夏日果香的美味嗎？
-            </p>
-            <ul class="mb-4">
-                <li>**6 入禮盒**：**299 元** – 內含 3 顆夏．果香甜甜圈＋3 顆綜合甜甜圈。</li>
-                <li>**12 入禮盒**：**499 元** – 內含 3 顆夏．果香甜甜圈＋9 顆綜合甜甜圈。</li>
-            </ul>
-            <h3 class="text-red-600">夏．果香套餐優惠</h3>
-            <p class="mb-4">
-                購買任一顆夏．果香甜甜圈，加購任一大杯飲品即可折抵 **15 元**！
-            </p>
-            <h3 class="text-red-600">國際甜甜圈日買一送一 (限時優惠！)</h3>
-            <p class="mb-4">
-                **6 月 6 日當天**，購買任一 6 或 12 入盒裝甜甜圈，即贈 6 入「原味糖霜甜甜圈」一盒！
-            </p>
-            <p class="text-sm text-red-500 font-bold">
-                重要提醒：所有活動優惠不得合併使用，外送平台不配合此活動，且數量有限，贈完為止。活動詳情請洽門市。
-            </p>
-        </div>
-
-        <!-- 品牌體驗區 -->
-        <h2 id="brand-section" class="text-green-700">品牌體驗區：不只美味，更是享受！</h2>
-        <div class="section-content text-gray-700">
-            <p class="mb-4">
-                在 Krispy Kreme，甜甜圈不只是一種點心，更是一種體驗。
-                歡迎來到我們的門市，親自感受「甜甜圈小劇場」的魅力，
-                看著熱騰騰、新鮮現做的甜甜圈從生產線緩緩而出，
-                或是注意「Hot Now！」燈號亮起，那代表最新鮮的原味糖霜甜甜圈剛出爐，
-                每一口都是融化在口中的幸福滋味！
-            </p>
-        </div>
-
-        <!-- 行動呼籲區 -->
-        <h2 id="call-to-action-section" class="text-green-700">立即行動！</h2>
-        <div class="section-content text-gray-700">
-            <p class="mb-4">
-                迫不及待想品嚐屬於你的甜甜圈了嗎？
-                立即查詢離你最近的 Krispy Kreme 門市，親自感受現做甜甜圈的迷人魔力！
-            </p>
-            <button class="bg-blue-600 hover:bg-blue-700">
-                <a href="https://www.krispykreme.com.tw/Store/Store.aspx" target="_blank" class="text-white no-underline">查詢最近門市</a>
-            </button>
-            <p class="mt-4 text-sm text-gray-500">
-                您也可以透過 Krispy Kreme TW LINE 官方帳號追蹤最新優惠與活動資訊！
-            </p>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const donutQuizForm = document.getElementById('donutQuizForm');
-            const resultDiv = document.getElementById('result');
-            const donutImageContainer = document.getElementById('donutImageContainer');
-            const loadingSpinner = document.getElementById('loadingSpinner');
-            const recommendationTextElement = document.getElementById('recommendationText');
-            const quizResultImgElem = document.getElementById('quizResultImgElem'); // Get the quiz result img element
-
-            // Hide spinners for static images on load, as their src are now directly set in HTML
-            document.getElementById('originalGlazedSpinner').classList.add('hidden');
-            document.getElementById('lemonStarSpinner').classList.add('hidden');
-            document.getElementById('grapeWaveSpinner').classList.add('hidden');
-            document.getElementById('passionPartySpinner').classList.add('hidden');
-
-
-            donutQuizForm.addEventListener('submit', async function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                const answers = {
-                    q1: document.querySelector('input[name="q1"]:checked'),
-                    q2: document.querySelector('input[name="q2"]:checked'),
-                    q3: document.querySelector('input[name="q3"]:checked'),
-                    q4: document.querySelector('input[name="q4"]:checked')
-                };
-
-                // Clear previous content and hide result area
-                quizResultImgElem.classList.add('hidden'); // Hide previous image
-                quizResultImgElem.src = ''; // Clear source
-                recommendationTextElement.innerHTML = '';
-                recommendationTextElement.style.color = ''; // Reset color in case of previous error
-                resultDiv.style.display = 'none'; // Hide result div
-
-                // Check if all questions are answered
-                if (!answers.q1 || !answers.q2 || !answers.q3 || !answers.q4) {
-                    recommendationTextElement.innerHTML = '<p class="text-red-500">請回答所有問題才能得到結果喔！</p>';
-                    recommendationTextElement.style.color = '#ff0000'; // Red color for error
-                    resultDiv.style.display = 'block'; // Show result container for error message
-                    return;
-                }
-
-                // Show loading spinner
-                loadingSpinner.classList.remove('hidden');
-                resultDiv.style.display = 'block'; // Show result container to display spinner
-
-                let recommendation = '';
-
-                const chosenAnswers = {
-                    q1: answers.q1.value,
-                    q2: answers.q2.value,
-                    q3: answers.q3.value,
-                    q4: answers.q4.value
-                };
-
-                const counts = { A: 0, B: 0, C: 0, D: 0 };
-                for (const key in chosenAnswers) {
-                    if (chosenAnswers.hasOwnProperty(key)) {
-                        counts[chosenAnswers[key]]++;
-                    }
-                }
-
-                let maxCount = 0;
-                let resultCategory = '';
-                for (const category in counts) {
-                    if (counts.hasOwnProperty(category)) {
-                        if (counts[category] > maxCount) {
-                            maxCount = counts[category];
-                            resultCategory = category;
-                        } else if (counts[category] === maxCount) {
-                            resultCategory += category;
-                        }
-                    }
-                }
-
-                // Define Krispy Kreme recommendations and corresponding image generation prompts
-                // These prompts are for the *dynamically generated* quiz result image
-                const donutRecommendations = {
-                    'A': {
-                        text: '你充滿活力，喜歡嘗鮮！最適合你的Krispy Kreme甜甜圈是 **繽紛巧克力甜甜圈** 或 **海鹽焦糖甜甜圈**。它們的豐富口感和獨特風味，絕對能點燃你的熱情！你也可以試試 **巧克力奧利奧甜甜圈**！',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme chocolate iced donut with colorful sprinkles, soft lines, vibrant yet soft colors, gentle shadows, minimal white background, art style: whimsical, playful, soft brushstrokes, clean, high resolution'
-                    },
-                    'B': {
-                        text: '你偏愛溫暖和舒適，喜歡經典不敗的味道。最適合你的Krispy Kreme甜甜圈是 **原味糖霜甜甜圈** 或 **肉桂糖甜甜圈**。熟悉的滋味能給你滿滿的幸福感。',
-                        prompt: 'hand-drawn watercolor illustration of a classic Krispy Kreme Original Glazed donut, soft lines, warm and inviting, simple elegance, light background, art style: watercolor, gentle, clean, high resolution'
-                    },
-                    'C': {
-                        text: '你喜歡與眾不同，追求獨特的體驗。最適合你的Krispy Kreme甜甜圈是 **抹茶甜甜圈** 或 **烤布蕾甜甜圈**。這些特別的組合能滿足你對新奇的渴望！你也可以試試 **草莓夾心貝**！',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme matcha donut with subtle green glaze, soft lines, earthy green tones, subtle details, gentle shadows, minimal white background, art style: tranquil, elegant, soft brushstrokes, clean, high resolution'
-                    },
-                    'D': {
-                        text: '你喜歡簡單和自然，不喜歡過於複雜的口味。最適合你的Krispy Kreme甜甜圈是 **檸檬甜星甜甜圈** 或 **草莓糖霜甜甜圈**。清爽的果香和微甜的口感，讓你在享受美味的同時也能感覺輕鬆無負擔。',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme strawberry iced donut, fresh, sweet, light and airy, pastel pink colors, soft lines, gentle shadows, minimal white background, art style: cheerful, airy, soft brushstrokes, clean, high resolution'
-                    },
-                    // Tie-breaker cases - prompts should be a combination or a good general one
-                    'AB': {
-                        text: '你今天活力與舒適並存！可以試試 **繽紛巧克力甜甜圈** 或經典的 **原味糖霜甜甜圈**！',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme original glazed donut next to a chocolate iced donut with sprinkles, soft lines, harmonious colors, gentle shadows, minimal white background, art style: playful, classic, soft brushstrokes, clean, high resolution'
-                    },
-                    'BA': {
-                        text: '你今天活力與舒適並存！可以試試 **繽紛巧克力甜甜圈** 或經典的 **原味糖霜甜甜圈**！',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme original glazed donut next to a chocolate iced donut with sprinkles, soft lines, harmonious colors, gentle shadows, minimal white background, art style: playful, classic, soft brushstrokes, clean, high resolution'
-                    },
-                    'AC': {
-                        text: '你既熱愛新奇又喜歡與眾不同！**海鹽焦糖甜甜圈** 或是 **抹茶甜甜圈** 都是不錯的選擇！',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme sea salt caramel donut next to a matcha donut, soft lines, unique color combination, gentle shadows, minimal white background, art style: artistic, distinct, soft brushstrokes, clean, high resolution'
-                    },
-                    'CA': {
-                        text: '你既熱愛新奇又喜歡與眾不同！**海鹽焦糖甜甜圈** 或是 **抹茶甜甜圈** 都是不錯的選擇！',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme sea salt caramel donut next to a matcha donut, soft lines, unique color combination, gentle shadows, minimal white background, art style: artistic, distinct, soft brushstrokes, clean, high resolution'
-                    },
-                    'AD': {
-                        text: '你充滿活力，但也喜歡清爽！**草莓糖霜甜甜圈** 或 **繽紛巧克力甜甜圈** 都能滿足你！',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme strawberry iced donut next to a chocolate iced donut with sprinkles, soft lines, bright and fresh colors, gentle shadows, minimal white background, art style: cheerful, energetic, soft brushstrokes, clean, high resolution'
-                    },
-                    'DA': {
-                        text: '你充滿活力，但也喜歡清爽！**草莓糖霜甜甜圈** 或 **繽紛巧克力甜甜圈** 都能滿足你！',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme strawberry iced donut next to a chocolate iced donut with sprinkles, soft lines, bright and fresh colors, gentle shadows, minimal white background, art style: cheerful, energetic, soft brushstrokes, clean, high resolution'
-                    },
-                    'BC': {
-                        text: '你喜歡溫暖又帶點特別的滋味！**肉桂糖甜甜圈** 或 **烤布蕾甜甜圈** 會是你的好選擇！',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme cinnamon sugar donut next to a creme brulee donut, soft lines, warm and subtle colors, gentle shadows, minimal white background, art style: cozy, comforting, soft brushstrokes, clean, high resolution'
-                    },
-                    'CB': {
-                        text: '你喜歡溫暖又帶點特別的滋味！**肉桂糖甜甜圈** 或 **烤布蕾甜甜圈** 會是你的好選擇！',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme cinnamon sugar donut next to a creme brulee donut, soft lines, warm and subtle colors, gentle shadows, minimal white background, art style: cozy, comforting, soft brushstrokes, clean, high resolution'
-                    },
-                    'BD': {
-                        text: '你喜歡經典的舒適，也愛清爽的風味！**原味糖霜甜甜圈** 或 **檸檬甜星甜甜圈** 都很適合你！',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme original glazed donut next to a lemon star donut, soft lines, fresh and classic colors, gentle shadows, minimal white background, art style: simple, refreshing, soft brushstrokes, clean, high resolution'
-                    },
-                    'DB': {
-                        text: '你喜歡經典的舒適，也愛清爽的風味！**原味糖霜甜甜圈** 或 **檸檬甜星甜甜圈** 都很適合你！',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme original glazed donut next to a lemon star donut, soft lines, fresh and classic colors, gentle shadows, minimal white background, art style: simple, refreshing, soft brushstrokes, clean, high resolution'
-                    },
-                    'CD': {
-                        text: '你喜歡獨特但又不失清爽！**抹茶甜甜圈** 或 **檸檬甜星甜甜圈** 會讓你驚喜！',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme matcha donut next to a lemon star donut, soft lines, balanced colors, gentle shadows, minimal white background, art style: unique, light, soft brushstrokes, clean, high resolution'
-                    },
-                    'DC': {
-                        text: '你喜歡獨特但又不失清爽！**抹茶甜甜圈** 或 **檸檬甜星甜甜圈** 會讓你驚喜！',
-                        prompt: 'hand-drawn watercolor illustration of a Krispy Kreme matcha donut next to a lemon star donut, soft lines, balanced colors, gentle shadows, minimal white background, art style: unique, light, soft brushstrokes, clean, high resolution'
-                    },
-                    'DEFAULT': {
-                        text: 'Krispy Kreme的甜甜圈口味太多了，有好多等你發掘！今天就隨心所欲地選一個吧！',
-                        prompt: 'hand-drawn watercolor illustration of a delicious Krispy Kreme style donut, soft lines, colorful, gentle shadows, minimal white background, art style: inviting, sweet, soft brushstrokes, clean, high resolution'
-                    }
-                };
-
-                const resultInfo = donutRecommendations[resultCategory] || donutRecommendations['DEFAULT'];
-                recommendation = resultInfo.text;
-                const imagePrompt = resultInfo.prompt;
-
-                try {
-                    const payload = { instances: { prompt: imagePrompt }, parameters: { "sampleCount": 1} };
-                    const apiKey = "";
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
-
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (!response.ok) {
-                        const errorText = await response.text();
-                        throw new Error(`API response not OK: ${response.status} ${response.statusText} - ${errorText}`);
-                    }
-
-                    const result = await response.json();
-
-                    if (result.predictions && result.predictions.length > 0 && result.predictions[0].bytesBase64Encoded) {
-                        const imageUrl = `data:image/png;base64,${result.predictions[0].bytesBase64Encoded}`;
-                        quizResultImgElem.src = imageUrl;
-                        quizResultImgElem.classList.remove('hidden'); // Show image
-                    } else {
-                        console.error('Image generation failed or returned no data.');
-                        quizResultImgElem.src = `https://placehold.co/250x250/cccccc/333333?text=${encodeURIComponent('圖片生成失敗 (無資料)')}`;
-                        quizResultImgElem.classList.remove('hidden'); // Show fallback
-                    }
-                } catch (error) {
-                    console.error('Error generating image:', error);
-                    quizResultImgElem.src = `https://placehold.co/250x250/cccccc/333333?text=${encodeURIComponent('圖片生成失敗 (API問題)')}`;
-                    quizResultImgElem.classList.remove('hidden'); // Show fallback
-                } finally {
-                    loadingSpinner.classList.add('hidden');
-                    recommendationTextElement.innerHTML = `<h3>結果分析：</h3><p>${recommendation}</p>`;
-                    recommendationTextElement.style.color = '#d81b60';
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a//dev/null b/index.html
+index 0000000000000000000000000000000000000000..9c0d671a5fad21728f7e0b1a2c9b8a7373d76dd4 100644
+--- a//dev/null
++++ b/index.html
+@@ -0,0 +1,194 @@
++<!DOCTYPE html>
++<html lang="zh-Hant">
++<head>
++<meta charset="UTF-8">
++<title>Hello Fruity Summer! 夏．果香</title>
++<style>
++:root {
++  --kk-green: #00653a;
++  --kk-red: #d21f26;
++  --kk-cream: #fff8e5;
++}
++body {
++  font-family: Arial, sans-serif;
++  margin: 0;
++  padding: 0;
++  background: var(--kk-cream);
++  color: #333;
++}
++header {
++  background: var(--kk-green);
++  color: #fff;
++  padding: 20px;
++  text-align: center;
++}
++section {
++  padding: 20px;
++  margin: 20px;
++  margin-bottom: 40px;
++  background: #fff;
++  border-radius: 6px;
++  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
++}
++h1 {
++  margin: 0;
++}
++h2 {
++  color: var(--kk-green);
++  border-bottom: 2px solid var(--kk-red);
++  padding-bottom: 5px;
++}
++ul {
++  padding-left: 20px;
++}
++.question {
++  margin-bottom: 20px;
++}
++button {
++  padding: 10px 20px;
++  background: var(--kk-red);
++  color: white;
++  border: none;
++  cursor: pointer;
++}
++button:hover {
++  background: #b03e22;
++}
++#result {
++  margin-top: 30px;
++}
++canvas {
++  display: block;
++  margin-top: 20px;
++}
++</style>
++</head>
++<body>
++<header>
++  <h1>Hello Fruity Summer! 夏．果香</h1>
++</header>
++<section id="intro">
++  <p>酸甜清爽、滋潤味蕾的夏日果香盛宴來囉！活動期間：<strong>2025/5/12 - 6/25</strong>。</p>
++</section>
++<section id="flavors">
++  <h2>最新口味介紹</h2>
++  <h3>檸檬甜星 (Lemon Galaxy)</h3>
++  <p>清香酸甜的檸檬糖霜結合檸檬巧克力，表面撒上繽紛星星糖片，猶如夏夜星空般閃耀。</p>
++  <h3>葡萄香檳浪花 (Sparkling Grape Wave)</h3>
++  <p>濃郁葡萄巧克力搭配微酸香檳糖霜，點綴跳跳糖，帶來海邊戲水般的清新愉悅。</p>
++  <h3>百香果派對 (Passion Party)</h3>
++  <p>以香氣四溢的百香果糖霜為基底，搭配迷你棉花糖與脆口彩米，猶如歡樂派對的驚喜口感。</p>
++</section>
++<section id="quiz">
++  <h2>口味選擇障礙小遊戲</h2>
++  <form id="quizForm">
++    <div class="question">
++      <p>1. 如果你是一種動物，你會選擇？</p>
++      <label><input type="radio" name="q1" value="lemon"> 活潑的海豚</label><br>
++      <label><input type="radio" name="q1" value="original"> 溫柔的鹿</label><br>
++      <label><input type="radio" name="q1" value="grape"> 聰明的狐狸</label><br>
++      <label><input type="radio" name="q1" value="choco"> 慵懶的貓咪</label>
++    </div>
++    <div class="question">
++      <p>2. 哪個季節最能代表你？</p>
++      <label><input type="radio" name="q2" value="lemon"> 夏天</label><br>
++      <label><input type="radio" name="q2" value="passion"> 春天</label><br>
++      <label><input type="radio" name="q2" value="choco"> 冬天</label><br>
++      <label><input type="radio" name="q2" value="grape"> 秋天</label>
++    </div>
++    <div class="question">
++      <p>3. 最喜歡的休閒活動？</p>
++      <label><input type="radio" name="q3" value="grape"> 到海邊走走</label><br>
++      <label><input type="radio" name="q3" value="lemon"> 輕鬆郊遊</label><br>
++      <label><input type="radio" name="q3" value="passion"> 參加派對</label><br>
++      <label><input type="radio" name="q3" value="original"> 在家追劇</label>
++    </div>
++    <div class="question">
++      <p>4. 清晨的第一個感覺？</p>
++      <label><input type="radio" name="q4" value="original"> 溫暖慵懶</label><br>
++      <label><input type="radio" name="q4" value="passion"> 活力四射</label><br>
++      <label><input type="radio" name="q4" value="lemon"> 明亮清新</label><br>
++      <label><input type="radio" name="q4" value="grape"> 涼爽微風</label>
++    </div>
++    <div class="question">
++      <p>5. 今天覺得幸運的顏色是？</p>
++      <label><input type="radio" name="q5" value="lemon"> 黃色</label><br>
++      <label><input type="radio" name="q5" value="grape"> 紫色</label><br>
++      <label><input type="radio" name="q5" value="passion"> 粉橘色</label><br>
++      <label><input type="radio" name="q5" value="choco"> 棕色</label>
++    </div>
++    <button type="button" onclick="showResult()">看結果</button>
++  </form>
++  <div id="result"></div>
++  <canvas id="donutCanvas" width="300" height="200"></canvas>
++</section>
++<section id="offers">
++  <h2>最新優惠活動</h2>
++  <ul>
++    <li><strong>LINE 好友獨享 1+1</strong> (2025/5/12-5/18)：5/11 前成為 LINE 好友者可獲新品券，購買「夏．果香禮盒」送「原味糖霜甜甜圈」一盒。</li>
++    <li><strong>夏．果香禮盒</strong> (2025/5/12-6/25)：6 入 299 元、12 入 499 元，皆含 3 顆夏．果香甜甜圈。</li>
++    <li><strong>夏．果香套餐</strong> (2025/5/12-6/25)：購買任一夏．果香甜甜圈，加購飲品折抵 15 元。</li>
++    <li><strong>幸運水果盤！線上轉好禮</strong> (2025/5/19-6/12)：每日登入 LINE 即可免費玩轉盤，有機會獲得免費新品禮盒。</li>
++    <li><strong>歡慶國際甜甜圈日！買一送一</strong> (2025/6/6)：購買 6 入或 12 入盒販即贈 6 入「原味糖霜甜甜圈」，各門市限量 50 組。</li>
++  </ul>
++  <p><small>※ 以門市數量為主，數量有限，贈完為止，活動優惠不得合併使用，外送平台不適用。Krispy Kreme 保留取消、變更與終止活動之權利。</small></p>
++</section>
++<script>
++const flavorInfo = {
++  lemon: {name: '檸檬甜星', color: '#f5d142', desc: '清爽檸檬香帶來夏夜星空般的好心情。'},
++  grape: {name: '葡萄香檳浪花', color: '#9d64d9', desc: '濃郁葡萄與香檳糖霜交織成海邊浪花般清新。'},
++  passion: {name: '百香果派對', color: '#ff9966', desc: '百香果香氣搭配棉花糖彩米，宛如派對般繽紛。'},
++  original: {name: '原味糖霜', color: '#f2c078', desc: '經典鬆軟口感，是最純粹的甜蜜享受。'},
++  choco: {name: '巧克力糖霜', color: '#9b5a3c', desc: '濃厚巧克力與鬆軟口感的完美結合。'}
++};
++function showResult() {
++  const form = document.getElementById('quizForm');
++  const data = new FormData(form);
++  const counts = {lemon:0, grape:0, passion:0, original:0, choco:0};
++  for (const [key,value] of data.entries()) {
++    counts[value]++;
++  }
++  let selected = 'original';
++  let max = 0;
++  for (const k in counts) {
++    if (counts[k] > max) {max = counts[k]; selected = k;}
++  }
++  const flavor = flavorInfo[selected];
++  const resultDiv = document.getElementById('result');
++  let answerText = '';
++  data.forEach((v, k) => {
++    answerText += `${k} 選擇了 ${flavorInfo[v].name}<br>`;
++  });
++  resultDiv.innerHTML = `<h3>推薦口味：${flavor.name}</h3><p>${answerText}</p><p>${flavor.desc}</p><p>這款甜甜圈的鬆軟口感，搭配你的獨特個性，絕對能讓你的夏日甜上加甜！</p>`;
++  drawDonut(flavor.color);
++}
++function drawDonut(color) {
++  const canvas = document.getElementById('donutCanvas');
++  const ctx = canvas.getContext('2d');
++  ctx.clearRect(0,0,canvas.width,canvas.height);
++  const x = canvas.width/2;
++  const y = canvas.height/2;
++  const outer = 80; const inner = 30;
++  const grad = ctx.createRadialGradient(x-10,y-10,inner,x,y,outer);
++  grad.addColorStop(0,'#ffffff');
++  grad.addColorStop(1,color);
++  ctx.fillStyle = grad;
++  ctx.beginPath();
++  ctx.arc(x,y,outer,0,Math.PI*2);
++  ctx.arc(x,y,inner,0,Math.PI*2,true);
++  ctx.fill();
++  ctx.strokeStyle = '#fff';
++  ctx.lineWidth = 2;
++  for(let i=0;i<10;i++){
++    ctx.beginPath();
++    const angle = Math.random()*Math.PI*2;
++    const r = inner + (outer-inner)/2;
++    const dotX = x + r*Math.cos(angle);
++    const dotY = y + r*Math.sin(angle);
++    ctx.arc(dotX,dotY,3,0,Math.PI*2);
++    ctx.stroke();
++  }
++}
++</script>
++</body>
++</html>
+ 
+EOF
+)
