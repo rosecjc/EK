@@ -45,90 +45,76 @@ body {
     height: auto;
 }
 
-/* === 主標題 h1 === */
-h1 {
-    font-size: 4rem;
-    color: #d81b60;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.5px;
-}
 
-/* === 區段標題 h2 === */
-h2 {
-    font-size: 2.5rem;
-    color: #00A850;
-    font-weight: 700;
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
-    padding-top: 1rem;
-}
+        /* === 標題樣式 === */
+        h1 {
+            font-size: 4rem; /* 主標題字體大小 */
+            color: #d81b60;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
 
-/* === 次標題 h3，例如題目標題用 === */
-h3 {
-    font-size: 1.8rem;
-    color: #c2185b;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
+        h2 {
+            font-size: 2.5rem; /* 區段標題字體大小 */
+            color: #00A850;
+            font-weight: 700;
+            margin: 2rem 0 1.5rem;
+        }
 
-/* === 各個區段的內容樣式 === */
-.section-content {
-    text-align: left;
-    margin-bottom: 30px;
-    line-height: 1.7;
-    font-size: 1.15rem;
-    color: #4a4a4a;
-    width: 100%;
-}
-.section-content ul {
-    list-style-type: disc;
-    margin-left: 1.5rem;
-    padding-left: 0;
-}
-.section-content li {
-    margin-bottom: 0.5rem;
-}
+        h3 {
+            font-size: 1.8rem; /* 次標題字體大小 */
+            color: #c2185b;
+            margin: 1.5rem 0 1rem;
+            font-weight: 600;
+        }
+        /* === 文字樣式 === */
+        .intro-text {
+            font-size: 1.3rem; /* 前言文字大小 */
+            color: #4a4a4a;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            font-weight: 500;
+        }
 
-/* === 前言/導語文字樣式 === */
-.intro-text {
-    font-size: 1.3rem;
-    color: #4a4a4a;
-    margin-bottom: 2.5rem;
-    line-height: 1.7;
-    font-weight: 500;
-}
+        .section-content {
+            text-align: left;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            font-size: 1.15rem;
+            color: #4a4a4a;
+            width: 100%;
+        }
 
-/* === 每一題的問題區塊樣式 === */
-.question-block {
-    background-color: #f0fdf4;
-    padding: 1.8rem;
-    margin-bottom: 1.5rem;
-    border-radius: 1.25rem;
-    text-align: left;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid #dcfce7;
-}
+        .section-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            padding-left: 0;
+        }
 
-/* === 每一題標題 h3（問題主題） === */
-.question-block h3 {
-    font-size: 1.8rem;
-    color: #166534;
-    margin-bottom: 1.2rem;
-    font-weight: 700;
-}
+        .section-content li {
+            margin-bottom: 0.5rem;
+        }
+        /* === 問題區塊樣式 === */
+        .question-block {
+            background-color: #f0fdf4;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-radius: 1.25rem;
+            text-align: left;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #dcfce7;
+        }
 
-/* === 單選選項的文字樣式 === */
-.options label {
-    display: block;
-    margin-bottom: 0.9rem;
-    cursor: pointer;
-    font-size: 1.15rem;
-    color: #333;
-    transition: color 0.2s ease, transform 0.2s ease;
-    padding: 0.5rem 0;
-}
+        /* === 單選選項的文字樣式 === */
+        .options label {
+            display: block;
+            margin-bottom: 0.9rem;
+            cursor: pointer;
+            font-size: 1.15rem;
+            color: #333;
+            transition: color 0.2s ease, transform 0.2s ease;
+            padding: 0.5rem 0;
 
 /* === 滑鼠移到選項時的 hover 效果 === */
 .options label:hover {
@@ -288,73 +274,29 @@ button:active {
     transform: translate(-50%, -50%);
 }
 
-/* === 響應式調整：適用於螢幕寬度小於 640px 的裝置（例如手機）=== */
-@media (max-width: 640px) {
-    .container {
-        padding: 1.5rem;
-        margin: 10px;
-        border-radius: 1rem;
-    }
-    .krispy-kreme-logo {
-        width: 150px;
-        margin-bottom: 1.5rem;
-    }
-    h1 {
-        font-size: 2.5rem;
-    }
-    h2 {
-        font-size: 1.8rem;
-    }
-    h3,
-    .question-block h3 {
-        font-size: 1.3rem;
-    }
-    .intro-text {
-        font-size: 1.1rem;
-    }
-    .section-content {
-        font-size: 1rem;
-    }
-    .question-block {
-        padding: 1.2rem;
-        margin-bottom: 1rem;
-        border-radius: 0.8rem;
-    }
-    .options label {
-        font-size: 0.95rem;
-        margin-bottom: 0.6rem;
-    }
-    input[type="radio"] {
-        transform: scale(1.1);
-    }
-    button {
-        padding: 0.9rem 1.8rem;
-        font-size: 1.15rem;
-        border-radius: 0.7rem;
-        margin-top: 1.5rem;
-    }
-    #result {
-        font-size: 1.1rem;
-        padding: 1.2rem;
-        border-radius: 0.9rem;
-    }
-    .donut-image {
-        width: 180px;
-        height: 180px;
-        margin: 1.5rem auto;
-    }
-    .donut-card img,
-    .donut-card .donut-card-image-wrapper {
-        width: 100px;
-        height: 100px;
-    }
-    .donut-card h4 {
-        font-size: 1.2rem;
-    }
-    .donut-card p {
-        font-size: 0.9rem;
-    }
-}
+        /* === 響應式調整 === */
+        @media (max-width: 640px) {
+            .container {
+                padding: 1.5rem;
+                margin: 10px;
+                border-radius: 1rem;
+            }
+            h1 {
+                font-size: 2.5rem; /* 手機上的字體大小 */
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            h3 {
+                font-size: 1.3rem;
+            }
+            .intro-text {
+                font-size: 1.1rem;
+            }
+            .section-content {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
